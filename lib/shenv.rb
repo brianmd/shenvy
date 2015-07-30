@@ -11,6 +11,6 @@ module Shenv
 
   def env_as_array
     env_rows = `set`.split("\n")
-    env_rows.collect{ |row| row.split('=') }
+    env_rows.collect{ |row| row.split('=', 2) }
   end
 end
