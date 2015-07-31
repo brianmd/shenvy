@@ -3,6 +3,14 @@ require 'spec_helper'
 describe Shenvy do
   let(:example_env) { Pathname(__FILE__).dirname + 'example_env' }
 
+  it 'force error to learn travis-ci directory structure' do
+    expect(example_env).to eq('where-am-i')
+  end
+
+  it 'force error to learn travis-ci directory structure 2' do
+    expect(__FILE__).to eq('my filename')
+  end
+
   it 'loads existing environment into a hash' do
     shenvy_key = 'this is a shenvy test'
     shenvy_val = '7'
