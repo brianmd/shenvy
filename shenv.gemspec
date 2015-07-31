@@ -9,8 +9,9 @@ Gem::Specification.new do |spec|
   spec.authors       = ["bmd"]
   spec.email         = ["brian@murphydye.com"]
 
-  spec.summary       = %q{TODO: Write a short summary, because Rubygems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
+  spec.summary       = %q{Loads the environment created by a shell script into Ruby's ENV hash}
+  spec.description   = %q{Useful for loading complex shell script environments (such as those composed when using
+direnv) into RubyMine.}
   spec.homepage      = "TODO: Put your gem's website or public repo URL here."
   spec.license       = "MIT"
 

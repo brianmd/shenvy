@@ -2,7 +2,7 @@
 
 # Shenvy
 
-This gem loads the environment created by a script into Ruby's ENV hash.
+This gem loads the environment created by a shell script into Ruby's ENV hash.
 
 The genesis of this is the need to load .envrc files (used by direnv) into RubyMine.
 It has the same concept as the dotenv and figaro gems, but for arbitrarily complex shell scripts.
