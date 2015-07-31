@@ -1,7 +1,7 @@
 require 'pathname'
-require 'shenv/version'
+require 'shenvy/version'
 
-module Shenv
+module Shenvy
   module_function
 
   def load(filename='.env')

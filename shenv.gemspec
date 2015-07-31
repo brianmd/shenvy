@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'shenv/version'
+require 'shenvy/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "shenv"
-  spec.version       = Shenv::VERSION
+  spec.name          = "shenvy"
+  spec.version       = Shenvy::VERSION
   spec.authors       = ["bmd"]
   spec.email         = ["brian@murphydye.com"]
 
