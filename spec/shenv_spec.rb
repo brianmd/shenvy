@@ -40,4 +40,6 @@ describe Shenvy do
   it 'handles a missing environment file' do
     expect{ Shenvy.load('not-a-file') }.to raise_error(RuntimeError, /not found/)
   end
+
+  it 'ensure environment file is executable.'
 end
