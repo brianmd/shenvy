@@ -16,16 +16,6 @@ module Shenv
     env_as_hash(str)
   end
 
-  def env_diff(before, after)
-    diff = []
-    before.each do |key,val|
-      diff << [key, after[key]] unless after[key]==val
-    end
-    new_keys = after.keys - before.keys
-    new_keys.each{ |key| diff << [key, after[key]] }
-    diff
-  end
-
   def env_as_hash(str=get_env)
     hash = {}
     env_as_array(str).each{ |key,val| hash[key] = val }
