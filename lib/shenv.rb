@@ -4,14 +4,14 @@ require 'shenv/version'
 module Shenv
   module_function
 
-  def load(filename='.envrc')
+  def load(filename='.env')
     sourced_env = env(filename)
     sourced_env.each do |key,val|
       ENV[key] = val
     end
   end
 
-  def env(filename='.envrc')
+  def env(filename='.env')
     str = `source '#{filename}' && set`
     env_as_hash(str)
   end

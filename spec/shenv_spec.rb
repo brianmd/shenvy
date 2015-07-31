@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Shenv do
-  it 'loads existing environment from file' do
+  it 'loads existing environment into a hash' do
     shenv_key = 'this is a shenv test'
     shenv_val = '7'
     ENV[shenv_key] = shenv_val
@@ -10,7 +10,7 @@ describe Shenv do
     expect(env[shenv_key]).to eq(shenv_val)
   end
 
-  it 'loads existing environment from file with an equals sign in the value' do
+  it 'loads existing environment with an equals sign in the value' do
     shenv_key = 'this is a shenv test 2'
     shenv_val = '7 = 6 + 1'
     ENV[shenv_key] = shenv_val
