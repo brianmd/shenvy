@@ -27,4 +27,11 @@ describe Shenv do
     diff = Shenv.env_diff(env_before, env_after)
     expect(diff).to eq([[shenv_key, shenv_val]])
   end
+
+  it 'get environment after sourcing a specific file' do
+    env = Shenv.env(Pathname.new('spec/env'))
+    expect(env.size).to eq(2)
+    expect(env['a']).to eq('a1')
+    expect(env['b']).to eq('b1')
+  end
 end
