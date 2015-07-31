@@ -1,7 +1,13 @@
-require "shenv/version"
+require 'pathname'
+require 'shenv/version'
 
 module Shenv
   module_function
+
+  def env(filename='.envrc')
+    str = `source '#{filename}' && set`
+    env_as_hash(str)
+  end
 
   def env_diff(before, after)
     diff = []
@@ -13,14 +19,14 @@ module Shenv
     diff
   end
 
-  def env_as_hash(env=env_as_array)
+  def env_as_hash(str=get_env)
     hash = {}
-    env.each{ |key,val| hash[key] = val }
+    env_as_array(str).each{ |key,val| hash[key] = val }
     hash
   end
 
-  def env_as_array
-    env_rows = `set`.split("\n")
+  def env_as_array(str=get_env)
+    env_rows = str.split("\n")
     pairs = env_rows.collect{ |row| row.split('=', 2) }
     pairs = pairs.select{ |key,val| !key.nil? and !val.nil? }
     pairs.collect do |key,val|
@@ -31,5 +37,9 @@ module Shenv
             end
       [key,val]
     end
+  end
+
+  def get_env
+    `set`
   end
 end

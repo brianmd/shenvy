@@ -1,0 +1,9 @@
+export a=a1
+echo $a
+if [ $a == 'a1' ]; then
+  echo 'yep'
+  export b=b1
+else
+  echo 'nope'
+  export b=b2
+fi
