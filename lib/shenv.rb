@@ -12,6 +12,7 @@ module Shenv
   end
 
   def env(filename='.env')
+    filename = Pathname.new(filename).expand_path.to_s
     str = `source '#{filename}' && set`
     env_as_hash(str)
   end

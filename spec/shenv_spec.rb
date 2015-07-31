@@ -18,19 +18,22 @@ describe Shenv do
     expect(env[shenv_key]).to eq(shenv_val)
   end
 
-  it 'get environment after sourcing a specific file' do
+  it 'gets environment after sourcing a specific file' do
     env = Shenv.env('spec/example_env')
     expect(env['a']).to eq('a1')
     expect(env['b']).to eq('b1')
   end
 
-  it "load sourced environment into this ruby's ENV" do
+  it "loads sourced environment into this ruby's ENV" do
     ENV['a'] = '0'
     ENV['b'] = '0'
     expect(ENV['a']).to eq('0')
     expect(ENV['b']).to eq('0')
+
     Shenv.load('spec/example_env')
     expect(ENV['a']).to eq('a1')
     expect(ENV['b']).to eq('b1')
   end
+
+  it 'handles a missing environment file'
 end
