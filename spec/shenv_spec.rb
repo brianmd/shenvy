@@ -34,5 +34,11 @@ describe Shenv do
     expect(env['b']).to eq('b1')
   end
 
-  it "load environment into this ruby's ENV"
+  it "load sourced environment into this ruby's ENV" do
+    ENV['a'] = 0
+    ENV['b'] = 0
+    Shenv.load('spec/example_env')
+    expect(ENV['a']).to eq('a1')
+    expect(ENV['b']).to eq('b1')
+  end
 end
