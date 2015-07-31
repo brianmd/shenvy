@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe Shenvy do
+  let(:example_env) { Pathname(__FILE__).dirname.parent + 'spec/example_env' }
+
   it 'loads existing environment into a hash' do
     shenvy_key = 'this is a shenvy test'
     shenvy_val = '7'
@@ -19,7 +21,7 @@ describe Shenvy do
   end
 
   it 'gets environment after sourcing a specific file' do
-    env = Shenvy.env('spec/example_env')
+    env = Shenvy.env(example_env)
     expect(env['a']).to eq('a1')
     expect(env['b']).to eq('b1')
   end
@@ -30,12 +32,12 @@ describe Shenvy do
     expect(ENV['a']).to eq('0')
     expect(ENV['b']).to eq('0')
 
-    Shenvy.load('spec/example_env')
+    Shenvy.load(example_env)
     expect(ENV['a']).to eq('a1')
     expect(ENV['b']).to eq('b1')
   end
 
   it 'handles a missing environment file' do
-    expect{ Shenvy.load('spec/not-a-file') }.to raise_error(RuntimeError, /not found/)
+    expect{ Shenvy.load('not-a-file') }.to raise_error(RuntimeError, /not found/)
   end
 end
