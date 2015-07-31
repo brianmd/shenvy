@@ -1,8 +1,41 @@
+[![Build Status](https://api.travis-ci.org/brianmd/shenvy.png?branch=master)](https://travis-ci.org/brianmd/shenvy)  [![Gem Version](https://badge.fury.io/rb/shenvy.png)](http://badge.fury.io/rb/shenvy)  [![Coverage Status](https://coveralls.io/repos/brianmd/shenvy/badge.png)](https://coveralls.io/r/brianmd/shenvy)
+
 # Shenvy
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/shenvy`. To experiment with that code, run `bin/console` for an interactive prompt.
+This gem loads the environment created by a script into Ruby's ENV hash.
 
-TODO: Delete this and the text above, and describe your gem
+The genesis of this is the need to load .envrc files (used by direnv) into RubyMine.
+It has the same concept as the dotenv and figaro gems, but for arbitrarily complex shell scripts.
+
+An example of where I use this is opting different services when at work vs away from work.
+
+```sh
+# local, dev, or prod
+DATABASE=local
+REDIS=dev
+# ...
+
+
+if [ $DATABASE == "dev" ]; then
+  export BLUE_HARVEST_HOST=mysql.dev
+  export BLUE_HARVEST_DATABASE=blue_harvest_dev
+elif [ $DATABASE == "local" ]; then
+  export BLUE_HARVEST_HOST=localhost
+  export BLUE_HARVEST_DATABASE=blue_harvest_dev
+elif [ $DATABASE == "prod" ]; then
+  export BLUE_HARVEST_HOST=mysql.prod
+  export BLUE_HARVEST_DATABASE=blue_harvest_production
+else
+  echo
+  echo "ERROR: DATABASE was not set."
+  echo
+  exit 1
+fi
+
+if [ $REDIS == "dev" ]; then
+# ...
+fi
+```
 
 ## Installation
 
@@ -22,7 +55,10 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+require 'shenvy'
+Shenv.load(filename_to_load)
+```
 
 ## Development
 
