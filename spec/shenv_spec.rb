@@ -35,5 +35,7 @@ describe Shenv do
     expect(ENV['b']).to eq('b1')
   end
 
-  it 'handles a missing environment file'
+  it 'handles a missing environment file' do
+    expect{ Shenv.load('spec/not-a-file') }.to raise_error(RuntimeError, /not found/)
+  end
 end

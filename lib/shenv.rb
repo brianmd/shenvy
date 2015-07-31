@@ -12,8 +12,9 @@ module Shenv
   end
 
   def env(filename='.env')
-    filename = Pathname.new(filename).expand_path.to_s
-    str = `source '#{filename}' && set`
+    path = Pathname.new(filename).expand_path
+    raise  "File #{path} not found" unless path.exist?
+    str = `source '#{path}' && set`
     env_as_hash(str)
   end
 
