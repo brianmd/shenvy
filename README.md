@@ -1,4 +1,4 @@
-[![Build Status](https://api.travis-ci.org/brianmd/shenvy.png?branch=master)](https://travis-ci.org/brianmd/shenvy)  [![Gem Version](https://badge.fury.io/rb/shenvy.png)](http://badge.fury.io/rb/shenvy)  [![Coverage Status](https://coveralls.io/repos/brianmd/shenvy/badge.png)](https://coveralls.io/r/brianmd/shenvy)
+[![Gem Version](https://badge.fury.io/rb/shenvy.png)](http://badge.fury.io/rb/shenvy)
 
 # Shenvy
 
@@ -57,7 +57,9 @@ Or install it yourself as:
 
 ```ruby
 require 'shenvy'
-Shenv.load(filename_to_load)
+Shenvy.load(Pathname.new(__FILE__).dirname.parent + '.env')
+
+note: this will be shortened to 'Shenvy.load' in the near future.
 ```
 
 ## Development
