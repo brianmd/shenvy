@@ -3,9 +3,19 @@ require "shenv/version"
 module Shenv
   module_function
 
-  def env_as_hash
+  def env_diff(before, after)
+    diff = []
+    before.each do |key,val|
+      diff << [key, after[key]] unless after[key]==val
+    end
+    new_keys = after.keys - before.keys
+    new_keys.each{ |key| diff << [key, after[key]] }
+    diff
+  end
+
+  def env_as_hash(env=env_as_array)
     hash = {}
-    env_as_array.each{ |key,val| hash[key] = val }
+    env.each{ |key,val| hash[key] = val }
     hash
   end
 
